@@ -1,13 +1,13 @@
 html{
     text-align: center;
-    width: 95%;
+    width: 99%;
     height: 90%;
-    background-color: rgb(218, 216, 216);
+    background-color: black;
     
 }
 
 body{
-    width: 100%;
+    width: 99%;
     height: 100;
     margin: 0%;
     padding: 0%;
@@ -15,13 +15,19 @@ body{
 #container{
     width: 90%;
     height: 80%;
-    border: black 5px solid;
+    border: rgb(116, 14, 212) 5px solid;
     margin: auto;
-    
+    position: relative;
 }
 
 #canvas{
     width: 100%;
     height: 100%;
     cursor: crosshair;
+}
+#text{
+    color: rgb(113, 45, 177);
+    font-size: 32px;
+    font-variant: normal;
+    font-family: Agency FB;
 }
