@@ -13,6 +13,10 @@ document.getElementById("colorP").oninput = function(){
   color = this.value
 }
 
+document.getElementById("size").oninput = function(){
+  width = this.value
+}
+
 cnv.onmousedown = (e) => {
  setTimeout(() => {
   cnv.onmousemove = (event) => {
