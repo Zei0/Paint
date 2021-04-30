@@ -36,3 +36,8 @@ body{
 background-color: black;
 border:black;
 }
+#save_image{
+color: white;
+font-family: Agency FB;
+background-color: rgb(116, 14, 212);
+}
