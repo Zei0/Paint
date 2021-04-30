@@ -9,6 +9,10 @@ cnv.width = displayWidth
 cnv.height = displayHeight
 
 
+document.getElementById("colorP").oninput = function(){
+  color = this.value
+}
+
 cnv.onmousedown = (e) => {
  setTimeout(() => {
   cnv.onmousemove = (event) => {

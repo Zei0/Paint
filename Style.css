@@ -18,6 +18,7 @@ body{
     border: rgb(116, 14, 212) 5px solid;
     margin: auto;
     position: relative;
+    border-style: dashed;
 }
 
 #canvas{
@@ -30,4 +31,8 @@ body{
     font-size: 32px;
     font-variant: normal;
     font-family: Agency FB;
+}
+#colorP{
+background-color: black;
+border:black;
 }
