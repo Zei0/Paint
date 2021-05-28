@@ -1,15 +1,15 @@
-let cnv = document.getElementById("canvas");
-let cnv_bg = document.getElementById("bg_layer");
+let cnv = document.getElementById("canvas"); //Холст для рисования.
+let cnv_bg = document.getElementById("bg_layer"); //Холст для заднего фона. 
 let ctx = cnv.getContext("2d");
 let ctx_bg = cnv_bg.getContext("2d");
-let color = document.getElementById("color").value;
-let background = document.getElementById("background");
+let color = document.getElementById("color").value; //Цвет кисти. 
+let background = document.getElementById("background"); //Цвет фона. 
 let width = 30;
 let tool = "Кисточка";
-let button_tool = document.getElementById("tool");
-let button_clear = document.getElementById("clear");
+let button_tool = document.getElementById("tool"); //Инструменты.
+let button_clear = document.getElementById("clear"); //Ластик.
 
-let displayWidth = cnv.clientWidth;
+let displayWidth = cnv.clientWidth; //Устанавливаем размер холста. 
 let displayHeight = cnv.clientHeight;
 cnv.width = displayWidth;
 cnv.height = displayHeight;
@@ -31,35 +31,49 @@ document.getElementById("save_image").onclick = function(){
     let ctx_save = cnv_save.getContext("2d");
     cnv_save.width = displayWidth;
     cnv_save.height = displayHeight;
-    ctx_save.save();
+    //Переносим на холст зданего фона сохранения.
     ctx_save.drawImage(cnv_bg, 0, 0, cnv.width, cnv.height);
-    ctx.save();
-    ctx.fillStyle = 'rgba(255,0,0,.4)';
     ctx_save.drawImage(cnv, 0, 0, cnv.width, cnv.height);
-    //cnv_save.style.zIndex = 5;
     let image = cnv_save.toDataURL("image/jpg");
     this.href = image;
 }
 
+//Рисование мышкой.
 cnv.onmousedown = (e) => {
     setTimeout(() => {
         cnv.onmousemove = (event) => {
-            if(tool == "Кисточка")
+            if(tool == "Кисточка"){
                 ctx.fillStyle = color;
+                ctx.fillRect(event.offsetX - width/2, event.offsetY- width/2, width, width);
+            }
+                
             else
-                ctx.fillStyle = background.value;
-            ctx.fillRect(event.offsetX - width/2, event.offsetY- width/2, width, width);
+                ctx.clearRect(event.offsetX - width/2, event.offsetY- width/2, width, width);
+            
         };
     }, 1);
-    if(tool == "Кисточка")
-                ctx.fillStyle = color;
-            else
-                ctx.fillStyle = background.value;
-    ctx.fillRect(e.offsetX - width/2, e.offsetY- width/2, width, width);
+    if(tool == "Кисточка"){
+        ctx.fillStyle = color;
+        ctx.fillRect(e.offsetX - width/2, e.offsetY- width/2, width, width);
+    }
+        
+    else
+        ctx.clearRect(e.offsetX - width/2, e.offsetY- width/2, width, width);
+    
     cnv.onmouseup = () => {
         cnv.onmousemove = null;
     };
 }
+cnv.ontouchmove = (event) => {
+    if(tool == "Кисточка"){
+        ctx.fillStyle = color;
+        ctx.fillRect(event.changedTouches[0].clientX - width/2, event.changedTouches[0].clientY- width/2, width, width);
+    }
+        
+    else
+        ctx.clearRect(event.changedTouches[0].clientX - width/2, event.changedTouches[0].clientY- width/2, width, width);
+}
+
 
 background.addEventListener('input', changeBackground);
 
